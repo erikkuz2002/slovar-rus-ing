@@ -11,3 +11,4 @@ window
 door
 problem  
 school
+no
