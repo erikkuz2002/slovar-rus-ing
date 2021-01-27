@@ -32,20 +32,39 @@ def transelt(list_Rus,list_Ing):
         print(f"{slovo}-{list_Rus[ind]}")
     else:
         print(f"{slovo.upper()} Сожелению нет таких слов в анг. и рус. может добавить слово")
-        v=input("желаете добавить слово в словарь")
+        v=input("желаете добавить слово в словарь==>")
         if v.lower()=="да": uued_sonad()
 
-def antierror():
-    v=input("какую хотите исправит рус-1, анг-2")
-    if =="1":
-        ruseerror=in
-        
+def list_failisse(f,list):
+    flil=open(f,"w",encoding="utf-8-sig")
+    for k in list:
+        fail.write(k+"\n")
+    fail.close()
+    return list
+
+def antierror(list_Rus, list_Ing):
+    viga=input("введите не правилный слово==>")
+    if viga in list_Rus:
+        ind=list_Rus.index(viga)#index
+        print(f"будет испавильно слово{viga}-{list_Ing[ind]}")
+        list_Rus.pop(ind)
+        list_Ing.pop(ind)
+        list_Rus=list_failisse("Rus.txt",list_Rus)
+        list_Ing=list_failisse("Ing.txt",list_Ing)
+        uued_sonad()
+    elif viga in list_Ing:
+        ind=list_Ing.index(viga)
+        print(f"будет испавильно слово{viga}-{list_Rus[ind]}")
+        list_Rus.pop(ind)
+        list_Ing.pop(ind)
+        list_Rus=list_failisse("Rus.txt",list_Rus)
+        list_Ing=list_failisse("Ing.txt",list_Ing)
+        uued_sonad()
     else:
-        ingeerror
-
-
-    slovoerror=input("какую слово хотите исправит")
-
+        print(f"{viga.upper()} Сожелению нет таких слов в анг. и рус.")
+        list_Rus=list_failisse("Rus.txt")
+        list_Ing=list_failisse("Ing.txt")
+        return list_Rus, list_Ing
 def test():
     pass
 
@@ -60,7 +79,9 @@ while True:
     elif v=="2":
         list_Rus, list_Ing=uued_sonad()
     elif v=="3":
-        antierror()
+        print(list_Rus, list_Ing)
+        list_Rus, list_Ing= antierror(list_Rus, list_Ing)
+        print(list_Rus, list_Ing)
     elif v=="4":
         test()
     elif v=="5":
